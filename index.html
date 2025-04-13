@@ -42,10 +42,37 @@
             </div>
 
             <div id="cart" class="col-s-12 col-m-3 col-x-4">
-                <a href="cart.html" class="cart-button"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (0)</a>
-            </div>
+                <a href="javascript:void(0)" class="cart-button" onclick="toggleFullCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (0)
+                </a>
+            </div> 
         </div>
     </div>
+
+        <!-- Giỏ hàng đầy đủ (ẩn mặc định) -->
+        <section class="cart-full" id="full-cart" style="display: none;">
+            <i class="fa-solid fa-x" onclick="toggleFullCart()"></i>
+            <h2>Giỏ hàng của bạn</h2>
+            <form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nhạc cụ</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Nội dung sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+                <div class="price-total" style="text-align: right;">
+                    <p style="font-weight: bold;">Tổng tiền: <span id="cart-total">0</span><sup>đ</sup></p>
+                </div>
+                <button class="checkout-btn">Thanh toán</button>
+            </form>
+        </section>
 
     <div id="menu" class="col-s-12 col-m-12 col-x-12">
         <ul>
@@ -55,31 +82,9 @@
             <li class="menu-item">
                 <a href="#">Sản phẩm</a>
                 <ul class="submenu">
-                    <li><a href="#">Nhạc cụ GẢY</a>
-                        <!-- <ul class="submenu"> -->
-                            <!-- <li><a href="#">Đàn bầu</a></li> -->
-                            <!-- <li><a href="#">Đàn tranh</a></li> -->
-                            <!-- <li><a href="#">Đàn nguyệt</a></li> -->
-                            <!-- <li><a href="#">Đàn tỳ bà</a></li> -->
-                            <!-- <li><a href="#">Đàn cò</a></li> -->
-                        <!-- </ul> -->
-                    </li>
-                    <li><a href="#">Nhạc cụ thổi</a>
-                        <!-- <ul class="submenu"> -->
-                            <!-- <li><a href="#">Sáo trúc</a></li> -->
-                            <!-- <li><a href="#">Khèn</a></li> -->
-                            <!-- <li><a href="#">Sáo mèo</a></li> -->
-                            <!-- <li><a href="#">Tiêu</a></li> -->
-                        <!-- </ul> -->
-                    </li>
-                    <li><a href="#">Nhạc cụ gõ</a>
-                        <!-- <ul class="submenu"> -->
-                            <!-- <li><a href="#">Đàn đá</a></li> -->
-                            <!-- <li><a href="#">Cồng chiêng</a></li> -->
-                            <!-- <li><a href="#">Đàn T'rưng</a></li> -->
-                            <!-- <li><a href="#">Trống</a></li> -->
-                        <!-- </ul> -->
-                    </li>
+                    <li><a href="#">Nhạc cụ GẢY</a></li>
+                    <li><a href="#">Nhạc cụ thổi</a></li>
+                    <li><a href="#">Nhạc cụ gõ</a></li>
                     <li><a href="#">Phụ kiện nhạc cụ</a></li>
                     <li><a href="#">Sách & Tài liệu</a></li>
                 </ul>
