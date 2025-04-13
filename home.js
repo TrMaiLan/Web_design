@@ -119,3 +119,68 @@ $(document).ready(function() {
         alert("Đã thêm sản phẩm " + name + " vào giỏ hàng!");
     });
 });
+
+
+function toggleFullCart() {
+    const cartSection = document.getElementById("full-cart");
+    if (cartSection.style.display === "none" || cartSection.style.display === "") {
+        cartSection.style.display = "block";
+        showFullCart();
+    } else {
+        cartSection.style.display = "none";
+    }
+}
+
+function showFullCart() {
+    const tbody = document.getElementById("cart-items");
+    const totalSpan = document.getElementById("cart-total");
+
+    tbody.innerHTML = "";
+    let total = 0;
+
+    let orderData = JSON.parse(localStorage.getItem("orderDetails")) || [];
+
+    orderData.forEach((order, index) => {
+        const priceNumber = parseInt(order.price.replace(/\D/g, ""));
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td><img src="${order.photo}" style="width: 50px; vertical-align: middle;"> ${order.name}</td>
+            <td>${order.price}</td>
+            <td><input type="number" value="1" min="1" class="quantity" data-price="${priceNumber}"></td>
+            <td><button class="delete-btn" data-index="${index}">Xóa</button></td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    // Sau khi render xong, gắn sự kiện
+    updateTotal();
+
+    // Gắn sự kiện thay đổi số lượng
+    document.querySelectorAll(".quantity").forEach(input => {
+        input.addEventListener("input", updateTotal);
+    });
+
+    // Gắn sự kiện xóa
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            const indexToRemove = parseInt(this.dataset.index);
+            orderData.splice(indexToRemove, 1);
+            localStorage.setItem("orderDetails", JSON.stringify(orderData));
+            showFullCart(); // Reload lại cart
+            document.querySelector("#cart a").textContent = "Giỏ hàng (" + orderData.length + ")";
+        });
+    });
+}
+
+// Hàm cập nhật tổng tiền
+function updateTotal() {
+    let total = 0;
+    document.querySelectorAll(".quantity").forEach(input => {
+        const quantity = parseInt(input.value) || 1;
+        const price = parseInt(input.dataset.price);
+        total += quantity * price;
+    });
+    document.getElementById("cart-total").textContent = total.toLocaleString();
+}
