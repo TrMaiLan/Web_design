@@ -21,7 +21,7 @@ li {
     left: 20px;
 }
 
-.container li button {
+.container li a {
     font-size: 30px;
     font-family: 'Dancing Script', cursive;
     padding: 8px 15px;
@@ -34,9 +34,10 @@ li {
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
 }
 
-.container li button:hover {
+.container li a:hover {
     background-color: rgba(255, 255, 255, 1);
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -180,20 +181,20 @@ h2 {
     min-height: 20px;
 }
 
-.register-link {
+.signup-link {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     color: #666;
 }
 
-.register-link a {
+.signup-link a {
     color: #e75480;
     text-decoration: none;
     font-weight: 500;
 }
 
-.register-link a:hover {
+.signup-link a:hover {
     text-decoration: underline;
 }
 
