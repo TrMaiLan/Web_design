@@ -4,10 +4,10 @@
     <title>Trang Chủ - Nhạc Cụ Dân Tộc Việt Nam</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
     <script src="https://kit.fontawesome.com/39afb80cde.js" crossorigin="anonymous"></script>
     <script src="jquery-3.7.1.min.js"></script>
-    <script src="home.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
     <div id="header">
@@ -50,7 +50,7 @@
     </div>
 
         <!-- Giỏ hàng đầy đủ (ẩn mặc định) -->
-        <section class="cart-full" id="full-cart" style="display: none;">
+        <section id="cart-sidebar" style="display: none;">
             <i class="fa-solid fa-x" onclick="toggleFullCart()"></i>
             <h2>Giỏ hàng của bạn</h2>
             <form>
@@ -70,7 +70,7 @@
                 <div class="price-total" style="text-align: right;">
                     <p style="font-weight: bold;">Tổng tiền: <span id="cart-total">0</span><sup>đ</sup></p>
                 </div>
-                <button class="checkout-btn">Thanh toán</button>
+                <a href="pay.html" class="pay">Thanh toán</a>
             </form>
         </section>
 
@@ -136,7 +136,7 @@
                     <div class="product-img-container">
                         <img src="dan_tranh.jpg" alt="Đàn tranh" />
                     </div>
-                    <a href="#">Đàn Tranh 17 Dây</a>
+                    <a href="product_details.html">Đàn tranh 16 dây</a>
                     <div class="price-container">
                         <span>15.000.000đ</span>
                         <span><s>18.000.000đ</s></span>
@@ -202,7 +202,7 @@
                     <div class="product-img-container">
                         <img src="dan_tranh.jpg" alt="Đàn tranh" />
                     </div>
-                    <a href="#">Đàn Tranh 17 Dây</a>
+                    <a href="product_details.html">Đàn tranh 16 dây</a>
                     <div class="price-container">
                         <span>15.000.000đ</span>
                         <span><s>18.000.000đ</s></span>
