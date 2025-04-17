@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="cart.css">
+    <script src="https://kit.fontawesome.com/39afb80cde.js" crossorigin="anonymous"></script>
+    <title>Giỏ Hàng - Nhạc Cụ Dân Tộc</title>
+</head>
+<body>
+    <!-- Header và Navigation từ trang chính của bạn -->
+    <header>
+        <!-- Có thể thêm header của bạn ở đây -->
+    </header>
+
+    <div class="container">
+        <h1>Giỏ Hàng</h1>
+        
+        <div class="cart-container">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="cart-summary">
+                <div class="total-price">
+                    <p>Tổng tiền: <span id="total-price">0</span><sup>đ</sup></p>
+                </div>
+                <div class="checkout-buttons">
+                    <button id="continue-shopping">Tiếp tục mua hàng</button>
+                    <button id="checkout-button">Thanh toán</button>
+                </div>
+            </div>
+            
+            <div id="empty-cart-message" style="display: none;">
+                <p>Giỏ hàng của bạn đang trống.</p>
+                <button id="shop-now">Mua sắm ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer từ trang chính của bạn -->
+    <footer>
+        <!-- Có thể thêm footer của bạn ở đây -->
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>
