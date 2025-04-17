@@ -13,9 +13,9 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         // Lưu vào localStorage
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('currentUser', JSON.stringify({
-            username: user.username,
-            name: user.name || user.username
-        }));
+        username: user.username,
+        name: user.fullname || user.username
+    }));
         
         if (remember) {
             localStorage.setItem('rememberUser', username);
