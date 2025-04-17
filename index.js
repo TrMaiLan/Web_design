@@ -1,31 +1,43 @@
-// Biến cho slideshow
+//Slideshow
 var n = 5;
 var i = 1;
 
-// Hàm cập nhật các ảnh nhỏ bên phải (trừ ảnh đang hiển thị)
+// Hàm khởi tạo slide-right khi trang tải
+function initializeSlideshow() {
+    updateSlideRight();
+}
+
+// Hàm cập nhật slide-right
 function updateSlideRight() {
     const slideRight = document.getElementById("slide-right");
-    slideRight.innerHTML = ""; // Xóa hết các ảnh nhỏ cũ
+    slideRight.innerHTML = "";
 
-    // Thêm các ảnh (trừ ảnh đang hiển thị)
-    for (let j = 1; j <= n; j++) {
-        if (j !== i) { // Nếu không phải ảnh đang hiển thị
-            const li = document.createElement("li"); // Tạo thẻ li
-            const img = document.createElement("img"); // Tạo thẻ img
-            img.src = `img_slide${j}.jpg`; // Đường dẫn ảnh
-            img.alt = `Slide ${j}`; // Văn bản thay thế
-            img.dataset.index = j; // Lưu chỉ số ảnh
+    let count = 0;
+    let j = i % n + 1;
+    
+    while (count < 4) {
+        if (j !== i) {
+            const li = document.createElement("li");
+            const img = document.createElement("img");
+            
+            img.src = `img_slide${j}.jpg`;
+            img.alt = `Slide ${j}`; 
+            img.dataset.index = j; 
 
-            // Khi click vào ảnh nhỏ thì cập nhật ảnh chính
+            // Click slide-right --> cập nhật slideshow
             img.onclick = function() {
-                i = parseInt(this.dataset.index); // Lấy chỉ số từ ảnh
-                document.getElementById("img_slide").src = `img_slide${i}.jpg`; // Hiển thị ảnh chính
-                updateSlideRight(); // Cập nhật lại danh sách ảnh nhỏ
+                i = parseInt(this.dataset.index);
+                document.getElementById("slide").src = `img_slide${i}.jpg`;
+                updateSlideRight();
             };
 
-            li.appendChild(img); // Thêm ảnh vào thẻ li
-            slideRight.appendChild(li); // Thêm li vào danh sách bên phải
+            li.appendChild(img);
+            slideRight.appendChild(li); 
+            
+            count++;
         }
+        
+        j = j % n + 1;
     }
 }
 
@@ -33,15 +45,15 @@ function updateSlideRight() {
 function next() {
     if (i == n) i = 1;
     else i++;
-    document.getElementById("slide").setAttribute("src", "img_slide" + i + ".jpg");
-    updateSlideRight(); //cập nhật slide-right
+    document.getElementById("slide").src = "img_slide" + i + ".jpg";
+    updateSlideRight(); // Cập nhật slide-right
 }
 
 // Hàm chuyển đến slide trước đó
 function back() {
     if (i == 1) i = n;
     else i--;
-    document.getElementById("slide").setAttribute("src", "img_slide" + i + ".jpg");
+    document.getElementById("slide").src = "img_slide" + i + ".jpg";
     updateSlideRight();
 }
 
@@ -59,26 +71,34 @@ function changeSlide(direction) {
     }
 }
 
+// Thêm event listener để khởi tạo slideshow khi trang được tải
+document.addEventListener("DOMContentLoaded", initializeSlideshow);
+
+
+
+
+
+
 // Chức năng điều hướng sản phẩm trong danh mục
 document.addEventListener('DOMContentLoaded', function() {
-    // Tìm tất cả các container sản phẩm
+    // Tìm sản phẩm
     const productContainers = document.querySelectorAll('.product-container');
     
-    // Xử lý từng container sản phẩm
+    // Xử lý sản phẩm
     productContainers.forEach(container => {
         const productList = container.querySelector('.products');
         const prevBtn = container.querySelector('.pre-btn');
         const nextBtn = container.querySelector('.nxt-btn');
         
-        // Tính toán khoảng cách để cuộn
+        // Tính kc để cuộn
         const scrollDistance = productList.clientWidth / 2;
         
-        // Xử lý sự kiện cho nút Previous
+        // Previous
         prevBtn.addEventListener('click', () => {
             productList.scrollLeft -= scrollDistance;
         });
         
-        // Xử lý sự kiện cho nút Next
+        // Next
         nextBtn.addEventListener('click', () => {
             productList.scrollLeft += scrollDistance;
         });
@@ -89,20 +109,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Xử lý khi trang được tải
 $(document).ready(function() {
-    // Tự động chạy slideshow
     autoPlay();
-    
-    // Khởi tạo biến cho giỏ hàng
+
     var orderDetails = "";
     var count = 0;
     
-    // Kiểm tra nếu đã có dữ liệu giỏ hàng trong localStorage
+    // Kiểm tra dl trong localStorage
     if (localStorage.getItem("orderDetails")) {
         try {
             var savedOrders = JSON.parse(localStorage.getItem("orderDetails"));
             count = savedOrders.length;
-            
-            // Cập nhật số lượng trong giỏ hàng
+
             $("#cart a").text("Giỏ hàng (" + count + ")");
             
             // Tái tạo chuỗi orderDetails từ dữ liệu đã lưu
@@ -116,7 +133,7 @@ $(document).ready(function() {
         }
     }
     
-    // Xử lý sự kiện click vào nút "Thêm vào giỏ"
+    // click giỏ hàng
     $(".add-to-cart").click(function() {
         var item = $(this).closest(".items");
         var name = item.find("a").text();
@@ -129,27 +146,14 @@ $(document).ready(function() {
             'photo': photo
         };
         
-        // // Thêm vào chuỗi orderDetails
-        // if (orderDetails.length > 0) {
-        //     orderDetails += "," + JSON.stringify(order);
-        // } else {
-        //     orderDetails = JSON.stringify(order);
-        // }
-        
-        // // Lưu vào localStorage
-        // localStorage.setItem("orderDetails", "[" + orderDetails + "]");
-        // Đọc lại orderDetails từ localStorage mỗi lần thêm mới
         let currentOrders = JSON.parse(localStorage.getItem("orderDetails")) || [];
         currentOrders.push(order);
             
-        // Lưu lại vào localStorage
         localStorage.setItem("orderDetails", JSON.stringify(currentOrders));
             
-        // Cập nhật lại biến count
         count = currentOrders.length;
         $("#cart a").text("Giỏ hàng (" + count + ")");
 
-        // Hiển thị thông báo
         alert("Đã thêm sản phẩm " + name + " vào giỏ hàng!");
     });
 });
@@ -203,10 +207,8 @@ function showFullCart() {
             orderData.splice(indexToRemove, 1);
             localStorage.setItem("orderDetails", JSON.stringify(orderData));
 
-            // Cập nhật hiển thị giỏ hàng
             updateCartDisplay();
-            
-            // Hiển thị lại giỏ hàng
+
             showFullCart();
         });
     });
