@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="cart.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
     <script src="https://kit.fontawesome.com/39afb80cde.js" crossorigin="anonymous"></script>
-    <title>Giỏ Hàng - Nhạc Cụ Dân Tộc</title>
+    <title>Giỏ Hàng - Nhạc Cụ Mai Lan</title>
 </head>
 <body>
-    <!-- Header và Navigation từ trang chính của bạn -->
-    <header>
-        <!-- Có thể thêm header của bạn ở đây -->
-    </header>
+    <div id="top" class="col-s-12 col-m-12 col-x-12">
+        <div id="top-left" class="col-s-12 col-m-6 col-x-6">
+            <i class="fa-solid fa-music"></i>
+            <span>Mai Lan</span>
+        </div>
+    </div>
 
-    <div class="container">
-        <h1>Giỏ Hàng</h1>
-        
+    <div id="banner" class="col-s-12 col-m-12 col-x-12">
+        <div id="b1" class="col-s-12 col-m-3 col-x-2">
+            <span>Melody</span>
+        </div>
+    </div>
+
+    <div class="page-banner">
+        <div class="container">
+            <h1>Giỏ Hàng Của Bạn</h1>
+        </div>
+    </div>
+
+    <div class="container cart-page">
         <div class="cart-container">
             <table id="cart-table">
                 <thead>
@@ -26,7 +38,7 @@
                         <th>Giá</th>
                         <th>Số lượng</th>
                         <th>Thành tiền</th>
-                        <th>Xóa</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="cart-items">
@@ -35,26 +47,75 @@
             </table>
             
             <div class="cart-summary">
-                <div class="total-price">
-                    <p>Tổng tiền: <span id="total-price">0</span><sup>đ</sup></p>
+                <div class="coupon-section">
+                    <input type="text" placeholder="Mã giảm giá" class="coupon-input">
+                    <button class="coupon-button">Áp dụng</button>
                 </div>
-                <div class="checkout-buttons">
-                    <button id="continue-shopping">Tiếp tục mua hàng</button>
-                    <button id="checkout-button">Thanh toán</button>
+                <div class="total-section">
+                    <div class="subtotal">
+                        <span>Tạm tính:</span>
+                        <span><span id="subtotal-price">0</span><sup>đ</sup></span>
+                    </div>
+                    <div class="total-price">
+                        <span>Tổng tiền:</span>
+                        <span><span id="total-price">0</span><sup>đ</sup></span>
+                    </div>
+                    <div class="checkout-buttons">
+                        <button id="checkout-button">Thanh toán</button>
+                    </div>
                 </div>
             </div>
             
             <div id="empty-cart-message" style="display: none;">
-                <p>Giỏ hàng của bạn đang trống.</p>
-                <button id="shop-now">Mua sắm ngay</button>
+                <div class="empty-cart-content">
+                    <i class="fa-solid fa-cart-shopping empty-cart-icon"></i>
+                    <h2>Giỏ hàng của bạn đang trống</h2>
+                    <p>Hãy khám phá nhiều sản phẩm nhạc cụ độc đáo của chúng tôi</p>
+                    <button id="shop-now">Mua sắm ngay</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer từ trang chính của bạn -->
-    <footer>
-        <!-- Có thể thêm footer của bạn ở đây -->
-    </footer>
+    <div id="footer" class="col-s-12 col-m-12 col-x-12">
+        <div>
+            <div class="aboutme col-s 12 col-m-3 col-x-3">
+                <p>Melody là nơi giới thiệu, bảo tồn và phát triển giá trị âm nhạc truyền thống 
+                    qua việc cung cấp các loại nhạc cụ thủ công chất lượng. 
+                    Chúng tôi cam kết mang đến trải nghiệm mua sắm tiện lợi, uy tín và gắn kết 
+                    văn hóa dân tộc đến với mọi người.</p>
+            </div>
+            <div class="customer col-s-12 col-m-3 col-x-3">
+                <h1>HỖ TRỢ KHÁCH HÀNG</h1>
+                <ul>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách đổi trả hàng</a></li>
+                    <li><a href="#">Chương trình khuyến mãi</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Hướng dẫn thanh toán</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+            
+            <div id="contact" class="contact col-s-12 col-m-3 col-x-3">
+                <h1>THÔNG TIN LIÊN HỆ</h1>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-phone"></i> Điện thoại: 0369209991</a></li>
+                    <li><a href="#"><i class="fa-solid fa-envelope"></i> Email: mailan@melody.vn</a></li>
+                    <li><a href="#"><i class="fa-solid fa-location-dot"></i> Địa chỉ: Bình Minh, Khoái Châu, Hưng Yên</a></li>
+                    <li><a href="#"><i class="fa-solid fa-globe"></i> Website: melody.vn</a></li>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook: Melody Vietnam</a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i> Youtube: Melody Vietnam</a></li>
+                </ul>
+            </div>
+            
+            <div id="supports" class="supports col-s-12 col-m-6 col-x-3">
+                <h1>VỊ TRÍ</h1>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6824.981683347275!2d105.92100563061011!3d20.880045285119206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135b0df491d2a0b%3A0x90b3225543314575!2zxJDhu4FuIENo4butIMSQ4buTbmcgVOG7rSAtIFRpw6puIER1bmc!5e0!3m2!1svi!2s!4v1744886139421!5m2!1svi!2s" 
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="cart.js"></script>
 </body>
