@@ -72,7 +72,7 @@ ul li{
 #banner {
     width: 100%;
     height: auto;
-    padding: 20px 10%;
+    padding: 0 10%;
     margin: auto;
     clear: both;
     display: flex;
@@ -314,6 +314,12 @@ ul li{
     clear: both;
 }
 
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
 #menu ul {
     list-style: none;
     margin: 0;
@@ -505,22 +511,67 @@ ul li{
     width: 80px;
     height: 3px;
     background-color: #e75480;
+} 
+
+.product-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .products {
     display: flex;
-    flex-wrap: nowwrap;
+    flex-wrap: nowrap;
     overflow-x: hidden; /* Ẩn thanh cuộn ngang */
     scroll-behavior: smooth; /* Tạo hiệu ứng cuộn mượt */
     padding: 10px 0;
-    
+    transition: all 0.5s ease;
+
+    /* Thuộc tính scroll-snap */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Cho iOS */
+}
+
+.pre-btn, .nxt-btn {
+    border: none;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9;
+    color: white;
+    transition: all 0.3s ease;
+    opacity: 0; /* ẩn mặc định */
+}
+
+.pre-btn {
+    left: 10px;
+}
+
+.nxt-btn {
+    right: 10px;
+}
+
+/* Hiển thị nút khi hover vào container */
+.product-container:hover .pre-btn, 
+.product-container:hover .nxt-btn {
+     opacity: 1; 
 }
 
 .items {
     padding: 15px;
     margin-bottom: 30px;
     transition: transform 0.3s ease;
-    width:25%;
+    flex: 0 0 25%;
+    min-width: 25%;
+    scroll-snap-align: start;
 }
 
 .items:hover {
@@ -617,14 +668,42 @@ ul li{
 /* ===== FOOTER STYLES ===== */
 #footer {
     background-color: #333	;
-    color: white;
-    padding: 40px 10%;
+    color: #f5f5f5;
+    padding: 50px 10%;
     clear: both;
 }
 
 #footer div {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.aboutme {
+    flex: 1 1 300px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px 20px 0;
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.aboutme p.artistic {
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Phân phối lại layout để customer và contact gần nhau hơn */
+.customer, .contact {
+    flex: 1 1 220px;  /* Giảm kích thước tối thiểu để chúng có thể đứng cạnh nhau */
+    padding: 0 15px;
+}
+
+.supports {
+    flex: 1 1 300px;  /* Phần maps sẽ rộng hơn */
 }
 
 #footer h1 {
@@ -632,16 +711,21 @@ ul li{
     font-size: 18px;
     margin-bottom: 20px;
     position: relative;
+    padding-bottom: 10px;
 }
 
 #footer h1:after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 0;
     width: 50px;
     height: 2px;
     background-color: #e75480;
+}
+
+#footer h1:hover:after {
+    width: 60px;  /* Hiệu ứng khi hover sẽ kéo dài gạch dưới */
 }
 
 #footer ul {
@@ -656,9 +740,10 @@ ul li{
 }
 
 #footer ul li a {
-    color: #ccc;
+    color: #ddd;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding-left: 5px;
 }
 
 #footer ul li a:hover {
@@ -687,11 +772,34 @@ ul li{
     .col-s-11 {width: 91.66%;}
     .col-s-12 {width: 100%;}
 
-    #menu ul {
-        display: flex;
-        flex-wrap: wrap;
+    #menu {
+        position: relative;
     }
-    
+
+    .hamburger {
+        display: block;
+        padding: 10px;
+    }
+
+    #menu ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        background-color: #ffccd5;
+        z-index: 999;
+        padding: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #menu ul li {
+        margin: 10px 0;
+        border-bottom: 1px solid #7D5A50;
+        text-align: center;
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -715,6 +823,23 @@ ul li{
         box-shadow: none;
         width: 100%;
         padding-left: 20px;
+    }
+
+    #menu-list{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background: white;
+        z-index: 999;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #menu-list.show {
+        display: flex;
     }
     
     #top {
@@ -750,7 +875,8 @@ ul li{
     }
 
     .items{
-        width: 100%;
+        min-width: 100%;
+        flex: 0 0 100%;
     }
 
     #ads img{
@@ -791,6 +917,11 @@ ul li{
     #slide-right{
         display: none;
     }
+
+    .items {
+        min-width: 50%;
+        flex: 0 0 50%;
+    }
 }
 
 /* Laptop/PC */
@@ -820,6 +951,7 @@ ul li{
         gap: 20px;
         justify-content: space-between; 
     }
+    
 }
 
 /* TV styles */
