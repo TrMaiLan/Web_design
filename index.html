@@ -35,11 +35,14 @@
             </div>
 
             <div id="search" class="col-s-12 col-m-6 col-x-6">
-                <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+                <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." oninput="searchProducts()" />
                 <button type="submit">
                     <i class="fa-solid fa-search"></i>
                 </button>
+                <!-- Dropdown kết quả tìm kiếm -->
+                <div id="search-results" class="search-results" style="display:none;"></div>
             </div>
+            
 
             <div id="cart" class="col-s-12 col-m-3 col-x-4">
                 <a href="javascript:void(0)" class="cart-button" onclick="toggleFullCart()">
@@ -73,13 +76,14 @@
                         </tr>
                     </thead>
                     <tbody id="cart-items">
-                        <!-- Nội dung sẽ được thêm bằng JavaScript -->
+                        <!-- js -->
                     </tbody>
                 </table>
                 <div class="price-total" style="text-align: right;">
                     <p style="font-weight: bold;">Tổng tiền: <span id="cart-total">0</span><sup>đ</sup></p>
                 </div>
                 <a href="pay.html" class="pay">Thanh toán</a>
+                <a href="cart.html" class="pay">Giỏ hàng chi tiết</a>
             </form>
         </section>
 
@@ -134,7 +138,7 @@
                     <i class="fa-solid fa-circle-chevron-right next" onclick="changeSlide(1)"></i>
                 </div>   
             </div>
-            <div id="slide-right"></div>
+            <div id="slide-right" class="col-s-12 col-m-4 col-x-3"></div>
         </div>
 
         <div class="catel col-s-12 col-m-12 col-x-12">
@@ -499,5 +503,6 @@
             </div>
         </div>
     </div>
+    <script src="search.js"></script>
 </body>
 </html>
