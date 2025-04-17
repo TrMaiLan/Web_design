@@ -1,6 +1,6 @@
 // Biến cho slideshow
-var n = 5; // Tổng số hình ảnh trong slideshow
-var i = 1; // Vị trí hiện tại của slideshow
+var n = 5;
+var i = 1;
 
 // Hàm cập nhật các ảnh nhỏ bên phải (trừ ảnh đang hiển thị)
 function updateSlideRight() {
@@ -58,6 +58,34 @@ function changeSlide(direction) {
         back();
     }
 }
+
+// Chức năng điều hướng sản phẩm trong danh mục
+document.addEventListener('DOMContentLoaded', function() {
+    // Tìm tất cả các container sản phẩm
+    const productContainers = document.querySelectorAll('.product-container');
+    
+    // Xử lý từng container sản phẩm
+    productContainers.forEach(container => {
+        const productList = container.querySelector('.products');
+        const prevBtn = container.querySelector('.pre-btn');
+        const nextBtn = container.querySelector('.nxt-btn');
+        
+        // Tính toán khoảng cách để cuộn
+        const scrollDistance = productList.clientWidth / 2;
+        
+        // Xử lý sự kiện cho nút Previous
+        prevBtn.addEventListener('click', () => {
+            productList.scrollLeft -= scrollDistance;
+        });
+        
+        // Xử lý sự kiện cho nút Next
+        nextBtn.addEventListener('click', () => {
+            productList.scrollLeft += scrollDistance;
+        });
+    });
+});
+
+
 
 // Xử lý khi trang được tải
 $(document).ready(function() {
@@ -347,3 +375,9 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     document.head.appendChild(style);
 });
+
+//menu
+function toggleMenu() {
+    const menu = document.querySelector('#menu ul');
+    menu.classList.toggle('show');
+}
