@@ -55,7 +55,7 @@ body {
 }
 
 #top-right a {
-    color: white;
+    color: #fff0f5;
     text-decoration: none;
     font-weight: bold;
 }
@@ -944,4 +944,3 @@ input.quantity {
     .col-x-12 {width: 100%;}
 
 }
-
